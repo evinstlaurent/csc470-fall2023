@@ -7,6 +7,8 @@ public class treeBurn : MonoBehaviour
     public GameObject deadTreePrefab;
     public GameObject firePrefab;
 
+    public bool burned = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,13 +32,17 @@ public class treeBurn : MonoBehaviour
 
             if (burner == 1)
             {
-                Vector3 treePosition = gameObject.transform.position;
-                GameObject deadTree = Instantiate(deadTreePrefab, treePosition, Quaternion.identity);
-                deadTree.transform.Rotate(0, Random.Range(0,359), 0);
-                GameObject fire = Instantiate(firePrefab, treePosition, Quaternion.identity);
-                fire.transform.Rotate(0, Random.Range(0,359), 0);
-                Destroy(gameObject, 5);
-                Destroy(fire, 5);
+                if (burned is false)
+                {
+                    burned = true;
+                    Vector3 treePosition = gameObject.transform.position;
+                    GameObject deadTree = Instantiate(deadTreePrefab, treePosition, Quaternion.identity);
+                    deadTree.transform.Rotate(0, Random.Range(0,359), 0);
+                    GameObject fire = Instantiate(firePrefab, treePosition, Quaternion.identity);
+                    fire.transform.Rotate(0, Random.Range(0,359), 0);
+                    Destroy(gameObject, 5);
+                    Destroy(fire, 6);
+                }
             }
     }
 }
