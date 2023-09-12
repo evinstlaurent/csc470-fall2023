@@ -41,7 +41,7 @@ public class treeBurn : MonoBehaviour
                     GameObject fire = Instantiate(firePrefab, treePosition, Quaternion.identity);
                     fire.transform.Rotate(0, Random.Range(0,359), 0);
                     Destroy(gameObject, 5);
-                    Destroy(fire, 6);
+                    Destroy(fire, 5);
                 }
             }
     }
