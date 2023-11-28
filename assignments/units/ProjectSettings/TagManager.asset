@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - UIManager
+  - GoldCollider
+  - QuotaCollider
+  - HealthCollider
+  - Barrier
+  - FieldCollider
   layers:
   - Default
   - TransparentFX
@@ -11,7 +17,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Terrain
   - 
   - 
   - 
