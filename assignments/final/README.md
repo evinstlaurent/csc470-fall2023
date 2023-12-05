@@ -16,3 +16,8 @@ By classtime 12/9: Finish core mechanic, begin constructing levels with probuild
 By 12/12: Finish start, losing, and win screens. Finish noise bar script and animation/audio. Continue level-building
 
 By 12/15: Everything Done
+
+![start screen](https://github.com/evinstlaurent/csc470-fall2023/assets/112595836/8741637a-3b87-4731-893b-521f5e87f706)
+
+![UI Interface](https://github.com/evinstlaurent/csc470-fall2023/assets/112595836/e05ecc31-b31b-481d-8825-022dfb758e08)
+
