@@ -3280,7 +3280,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5075377396226279330, guid: d59da2d9174ace24e910aacc34c518d1, type: 3}
       propertyPath: m_Name
-      value: Player
+      value: PlayerPrefab
       objectReference: {fileID: 0}
     - target: {fileID: 5319146276798339476, guid: d59da2d9174ace24e910aacc34c518d1, type: 3}
       propertyPath: m_IsTrigger
@@ -3454,7 +3454,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 471466442936821078, guid: b24053aebff439848b006cade48e9b96, type: 3}
       propertyPath: m_Name
-      value: Canvas
+      value: PlayerUICanvas
       objectReference: {fileID: 0}
     - target: {fileID: 3306841933339153941, guid: b24053aebff439848b006cade48e9b96, type: 3}
       propertyPath: m_AnchorMax.x
