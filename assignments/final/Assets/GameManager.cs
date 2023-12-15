@@ -5,25 +5,34 @@ using UnityEngine.UI;
 using TMPro;
 using System;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager SharedInstance;
-    List<string> stealList = new List<string>();
+    public List<string> stealList = new List<string>();
     public TMP_Text listText;
     public TMP_Text timerText;
     public TMP_Text promptText;
+    public TMP_Text loseText;
+    public Button mainButton;
+    public Button resetButton;
+    public Image loseBackground;
     public Slider noiseBar;
     public Slider lightBar;
     public GameObject headlampLight;
+    public furnitureScript recordPlayer;
+    public playerScript player;
     float currentBattery;
     float maxBattery = 200;
     float minBattery = 0;
     float currentNoise;
     float maxNoise = 200;
     float minNoise = 0;
-    int time;
+    public int time;
+    public int minNumObj;
+    public int maxNumObj;
     int num;
     int randIndex;
     public List<furnitureScript> furnitureList = new List<furnitureScript>();
@@ -62,7 +71,6 @@ public class GameManager : MonoBehaviour
         currentNoise = minNoise;
         SetNoise(1);
         currentBattery = maxBattery;
-        time = 10;
         timerText.text = "Time: "+time;
         StartCoroutine(timerTick());
     }
@@ -70,6 +78,20 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (currentNoise >= maxNoise) {
+            player.play = false;
+            loseBackground.gameObject.SetActive(true);
+            resetButton.gameObject.SetActive(true);
+            mainButton.gameObject.SetActive(true);
+            loseText.gameObject.SetActive(true);
+        }
+        if (time < 0) {
+            player.play = false;
+            loseBackground.gameObject.SetActive(true);
+            resetButton.gameObject.SetActive(true);
+            mainButton.gameObject.SetActive(true);
+            loseText.gameObject.SetActive(true);
+        }
         if (headlampLight.gameObject.activeSelf == true)
         {
             if (currentBattery >= minBattery)
@@ -83,7 +105,7 @@ public class GameManager : MonoBehaviour
         } else if (headlampLight.gameObject.activeSelf == false)
         {
             if (currentBattery < maxBattery) {
-                currentBattery += 0.05f;
+                currentBattery += 0.1f;
                 lightBar.value = currentBattery;
             }
         }
@@ -122,7 +144,10 @@ public class GameManager : MonoBehaviour
         {
             if (currentNoise < maxNoise)
             {
-               currentNoise += noise;
+                if (recordPlayer.item) {
+                    noise = noise*2f;
+                }
+                currentNoise += noise;
                 noiseBar.value = currentNoise;
             }
         }
@@ -130,7 +155,7 @@ public class GameManager : MonoBehaviour
         {
             if (currentNoise > minNoise)
             {
-               currentNoise += noise;
+                currentNoise += noise;
                 noiseBar.value = currentNoise;
             }
         }
@@ -157,7 +182,7 @@ public class GameManager : MonoBehaviour
 
     void assignItems()
     {
-        num = Random.Range(1,4);
+        num = Random.Range(minNumObj,maxNumObj);
         while(num > 0) {
             randIndex = Random.Range(0, furnitureList.Count-1);
             if (!furnitureList[randIndex].item) {
@@ -166,5 +191,13 @@ public class GameManager : MonoBehaviour
                 num -= 1;
             }
         }
+    }
+
+    public void resetLevel() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void goMenu() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex-SceneManager.GetActiveScene().buildIndex);
     }
 }
