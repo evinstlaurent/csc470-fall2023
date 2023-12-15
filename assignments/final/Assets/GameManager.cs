@@ -72,7 +72,7 @@ public class GameManager : MonoBehaviour
         if (!startYet)
         {
             assignItems();
-        for (int i = 0; i < stealList.Count; i++) {
+            for (int i = 0; i < stealList.Count; i++) {
             listText.text +=stealList[i];
             if (i != stealList.Count-1) {
                 listText.text += " | ";
