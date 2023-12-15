@@ -37,11 +37,6 @@ public class GameManager : MonoBehaviour
     int randIndex;
     public List<furnitureScript> furnitureList = new List<furnitureScript>();
 
-    void Awake()
-    {
-        SharedInstance = this;
-    }
-
     void OnEnable()
     {
         playerScript.UpdateNoise += SetNoise;
@@ -55,6 +50,11 @@ public class GameManager : MonoBehaviour
         furnitureScript.ShowInputPrompt -= inputPrompt;
         playerScript.ClearInputPrompt -= clearPromptText;
         furnitureScript.ItemStolen -= removeStolenObject;
+    }
+
+    void Awake()
+    {
+        SharedInstance = this;
     }
 
     // Start is called before the first frame update
