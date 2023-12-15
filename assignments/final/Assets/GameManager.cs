@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
     int num;
     int randIndex;
     public List<furnitureScript> furnitureList = new List<furnitureScript>();
+    bool startYet = false;
 
     void OnEnable()
     {
@@ -60,24 +61,28 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        assignItems();
-        for (int i = 0; i < stealList.Count; i++) {
-            listText.text +=stealList[i];
-            if (i != stealList.Count-1) {
-                listText.text += " | ";
-            }
-        }
-        
-        currentNoise = minNoise;
-        SetNoise(1);
-        currentBattery = maxBattery;
-        timerText.text = "Time: "+time;
-        StartCoroutine(timerTick());
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!startYet)
+        {
+            assignItems();
+            for (int i = 0; i < stealList.Count; i++) {
+                listText.text +=stealList[i];
+                if (i != stealList.Count-1) {
+                    listText.text += " | ";
+                }
+            }
+            
+            currentNoise = minNoise;
+            SetNoise(1);
+            currentBattery = maxBattery;
+            timerText.text = "Time: "+time;
+            StartCoroutine(timerTick());
+            startYet = true;
+        }
         if (currentNoise >= maxNoise) {
             player.play = false;
             loseBackground.gameObject.SetActive(true);

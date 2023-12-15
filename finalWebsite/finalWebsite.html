@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Merry Heistmas</title>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const carousel = document.querySelector('.carousel');
+                const slides = document.querySelectorAll('.carousel-slide');
+                const prevButton = document.querySelector('.prev-button');
+                const nextButton = document.querySelector('.next-button');
+
+                let currentIndex = 0;
+
+                function showSlide(index) {
+                    slides.forEach((slide, i) => {
+                        if (i === index) {
+                            slide.style.display = 'block';
+                        } else {
+                            slide.style.display = 'none';
+                        }
+                    });
+                }
+
+                function nextSlide() {
+                    currentIndex = (currentIndex + 1) % slides.length;
+                    showSlide(currentIndex);
+                }
+
+                function prevSlide() {
+                    currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+                    showSlide(currentIndex);
+                }
+
+                nextButton.addEventListener('click', nextSlide);
+                prevButton.addEventListener('click', prevSlide);
+
+                showSlide(currentIndex);
+            });
+        </script>
+        <style>
+            body, html {
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                height: 100%;
+                box-sizing: border-box;
+                background-color: #013220;
+                text-align: center;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+
+            * {
+                box-sizing: inherit;
+            }
+
+            /* Carousel Styles */
+            .carousel-container {
+                text-align: center;
+                margin-top: 20px;
+                padding: 20px;
+            }
+
+            .carousel {
+                display: flex;
+                overflow: hidden;
+            }
+
+            .carousel-slide {
+                flex: 0 0 100%;
+                text-align: center;
+                padding: 20px; /* Add padding for better spacing */
+            }
+
+            .carousel img {
+                margin: 0 auto;
+                display: block;
+                cursor: pointer;
+                border: 5px solid #fff; /* Add a border for a clean look */
+                transition: transform 0.2s;
+                height:300px;
+            }
+
+            .image-description {
+                left: 0;
+                right: 0;
+                margin:auto;
+                margin-top: 10px;
+                background-color: goldenrod;
+                color: black;
+                padding: 5px;
+                font-size: 16pt;
+                text-align: center;
+                max-width:525px;
+                height: fit-content;
+            }
+
+            .carousel-slide:hover .image-description {
+                display: block;
+            }
+
+            .prev-button, .next-button {
+                background-color: #800000;
+                color: #fff;
+                padding: 10px 20px;
+                border: none;
+                cursor: pointer;
+                font-size: 18px;
+                margin: 10px;
+                border-radius: 5px; /* Add rounded corners */
+                transition: background-color 0.2s;
+            }
+
+            .prev-button:hover, .next-button:hover {
+                background-color: #700000;
+            }
+
+            .mainTitle {
+                font-size: 35pt;
+                color: white;
+                font-family: 'Times New Roman', Times, serif;
+            }
+            .subTitle {
+                font-size: 20pt;
+                color: white;
+                font-family: 'Times New Roman', Times, serif;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <h1 class="mainTitle">Merry Heistmas:</h1>
+            <h2 class="subTitle">The Game That Stole Christmas!</h2>
+        </div>
+        <div>
+            <div class="carouselContainer">
+                <div class="carousel">
+                    <div class="carousel-slide">
+                        <img src="./images/searchLevel2.png" alt="Intro General Game Image">
+                        <div class="image-description">It is Christmas Eve, and you are one naughty burglar!</div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="./images/level2Image.png" alt="Level 2 Christmas Tree Image">
+                        <div class="image-description">Unleash your inner Grinch in 3 festive levels of thievery!</div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="./images/recordPlayerImage.png" alt="Level 1 Record Player Image">
+                        <div class="image-description">The Record Player plays all your favorite Christmas tunes! Make sure you don't get too loud...</div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="./images/Level1Battery.png" alt="Level 1 Flashlight Off Image">
+                        <div class="image-description">Ugh! That damn faulty headlamp is always dying! Better take a look at the battery...</div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="./images/level3LivingRoom.png" alt="Level 3 Living Room Image">
+                        <div class="image-description">Each time you play is totally unique and totally fun!</div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="./images/level3Image.png" alt="Level 3 Christmas Tree">
+                        <div class="image-description">In <i>Merry Heistmas</i>, being naughty has never felt more nice!</div>
+                    </div>
+                </div>
+                <button class="prev-button">←</button>
+                <button class="next-button">→</button>
+            </div>
+        </div>
+    </body>
+</html>
