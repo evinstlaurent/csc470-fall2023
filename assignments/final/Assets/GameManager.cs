@@ -36,7 +36,6 @@ public class GameManager : MonoBehaviour
     int num;
     int randIndex;
     public List<furnitureScript> furnitureList = new List<furnitureScript>();
-    bool startYet = false;
 
     void OnEnable()
     {
@@ -61,18 +60,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        //despite the game running perfectly in the unity editor, the GameManager Start function wasnt running in the webGL build? but Update and everything else on all the other scripts was fine?
-        //this is the solution I came up with
-        if (!startYet)
-        {
-            assignItems();
-            for (int i = 0; i < stealList.Count; i++) {
+        assignItems();
+        for (int i = 0; i < stealList.Count; i++) {
             listText.text +=stealList[i];
             if (i != stealList.Count-1) {
                 listText.text += " | ";
@@ -84,9 +73,11 @@ public class GameManager : MonoBehaviour
         currentBattery = maxBattery;
         timerText.text = "Time: "+time;
         StartCoroutine(timerTick());
-        startYet = true;
-        }
+    }
 
+    // Update is called once per frame
+    void Update()
+    {
         if (currentNoise >= maxNoise) {
             player.play = false;
             loseBackground.gameObject.SetActive(true);
